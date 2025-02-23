@@ -64,11 +64,17 @@ for index, row in df.iterrows():
     bipolar = row['Bipolar disorders (share of population) - Sex: Both - Age: Age-standardized']
     eating = row['Eating disorders (share of population) - Sex: Both - Age: Age-standardized']
     
+    country = row['Entity']
+    
     schizophrenia_avg += schizophrenia
     depressive_avg += depressive
     anxiety_avg += anxiety
     bipolar_avg += bipolar
     eating_avg += eating
+    
+    # if anxiety > 8:
+    #     print(country)
+    
     
     schizophrenia_median_array.append(float(schizophrenia))
     depressive_median_array.append(float(depressive))
@@ -122,6 +128,17 @@ eating_std_dev = np.power((eating_std_dev/(total_number_of_entries-1)),1/2)
 # print("Bipolar ",bipolar_avg,bipolar_median, bipolar_std_dev)
 # print("Eating ",eating_avg,eating_median, eating_std_dev)
 
+schizophrenia_skew = 3*(schizophrenia_avg-schizophrenia_median)/schizophrenia_std_dev
+depressive_skew = 3*(depressive_avg-depressive_median)/depressive_std_dev
+anxiety_skew = 3*(anxiety_avg-anxiety_median)/anxiety_std_dev
+bipolar_skew = 3*(bipolar_avg-bipolar_median)/bipolar_std_dev
+eating_skew = 3*(eating_avg-eating_median)/eating_std_dev
+
+# print("schizophrenia_skew ", schizophrenia_skew)
+# print("depressive_skew ", depressive_skew)
+# print("anxiety_skew", anxiety_skew)
+# print("bipolar_skew", bipolar_skew)
+# print("eating_skew", eating_skew)
 
 
 schizophrenia_z_score_array = []
@@ -238,11 +255,18 @@ for index, row in df.iterrows():
     bipolar = row['DALYs (rate) - Sex: Both - Age: Age-standardized - Cause: Eating disorders']
     eating = row['DALYs (rate) - Sex: Both - Age: Age-standardized - Cause: Anxiety disorders']
     
+    country = row['Entity']
+    
     schizophrenia_avg += schizophrenia
     depressive_avg += depressive
     anxiety_avg += anxiety
     bipolar_avg += bipolar
     eating_avg += eating
+
+    # # print(anxiety)
+    # if schizophrenia > 275:
+    #     print(country)
+
 
     schizophrenia_median_array.append(float(schizophrenia))
     depressive_median_array.append(float(depressive))
@@ -295,6 +319,19 @@ eating_std_dev = np.power((eating_std_dev/(total_number_of_entries-1)),1/2)
 # print("Anxiety ",anxiety_avg,anxiety_median, anxiety_std_dev)
 # print("Bipolar ",bipolar_avg,bipolar_median, bipolar_std_dev)
 # print("Eating ",eating_avg,eating_median, eating_std_dev)
+
+
+schizophrenia_skew = 3*(schizophrenia_avg-schizophrenia_median)/schizophrenia_std_dev
+depressive_skew = 3*(depressive_avg-depressive_median)/depressive_std_dev
+anxiety_skew = 3*(anxiety_avg-anxiety_median)/anxiety_std_dev
+bipolar_skew = 3*(bipolar_avg-bipolar_median)/bipolar_std_dev
+eating_skew = 3*(eating_avg-eating_median)/eating_std_dev
+
+# print("schizophrenia_skew ", schizophrenia_skew)
+# print("depressive_skew ", depressive_skew)
+# print("anxiety_skew", anxiety_skew)
+# print("bipolar_skew", bipolar_skew)
+# print("eating_skew", eating_skew)
 
 
 schizophrenia_z_score_array = []
@@ -539,6 +576,21 @@ anxiety_std_dev = np.power((anxiety_std_dev/(total_number_of_entries-1)),1/2)
 # print("Anxiety ",anxiety_score_avg,anxiety_median, anxiety_std_dev)
 
 
+schizophrenia_skew = 3*(schizophrenia_score_avg-schizophrenia_median)/schizophrenia_std_dev
+depression_skew = 3*(depression_score_avg-depression_median)/depression_std_dev
+anxiety_skew = 3*(anxiety_score_avg-anxiety_median)/anxiety_std_dev
+bipolar_skew = 3*(bipolar_score_avg-bipolar_median)/bipolar_std_dev
+eating_skew = 3*(eating_score_avg-eating_median)/eating_std_dev
+dysthymia_skew = 3*(dysthymia_score_avg-dysthymia_median)/dysthymia_std_dev
+
+# print("schizophrenia_skew ", schizophrenia_skew)
+# print("depressive_skew ", depressive_skew)
+# print("anxiety_skew", anxiety_skew)
+# print("bipolar_skew", bipolar_skew)
+# print("eating_skew", eating_skew)
+# print("Dysthymia ", dysthymia_skew)
+
+
 
 depression_z_score_array = []
 bipolar_z_score_array = []
@@ -692,6 +744,25 @@ for index, row in df.iterrows():
 potentially_adequate_std_dev = np.power((potentially_adequate_std_dev/(total_number_of_entries-1)),1/2)
 other_std_dev = np.power((other_std_dev/(total_number_of_entries-1)),1/2)
 untreated_std_dev = np.power((untreated_std_dev/(total_number_of_entries-1)),1/2)
+
+
+
+
+potentially_adequate_skew = 3*(potentially_adequate_avg-potentially_adequate_median)/potentially_adequate_std_dev
+other_skew = 3*(other_avg-other_median)/other_std_dev
+untreated_skew = 3*(untreated_avg-untreated_median)/untreated_std_dev
+
+
+print("Potentially Adequate ", potentially_adequate_skew)
+print("Other ", other_skew)
+print("Unreated ", untreated_skew)
+
+# print("schizophrenia_skew ", schizophrenia_skew)
+# print("depressive_skew ", depressive_skew)
+# print("anxiety_skew", anxiety_skew)
+# print("bipolar_skew", bipolar_skew)
+# print("eating_skew", eating_skew)
+# print("Dysthymia ", dysthymia_skew)
 
 
 # print("Potentially Adequate ", potentially_adequate_avg, potentially_adequate_median, potentially_adequate_std_dev)
