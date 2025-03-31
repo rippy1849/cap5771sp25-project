@@ -282,8 +282,10 @@ for index, row in df.iterrows():
 df['Gender'] = df['Gender'].map({'Male':0, 'Female':1})
 df['Country'] = df['Country'].map(country_map)
 df['Occupation'] = df['Occupation'].map({'Corporate' : 0, 'Student':1, 'Business':2, 'Housewife' : 3, 'Others': 4})
-df['self_employed'] = df['self_employed'].map({'No':0, 'Yes':1, np.nan : 2})
+df['self_employed'] = df['self_employed'].map({'No':0, 'Yes':1, np.nan : 0})
 df['family_history'] = df['family_history'].map({'No':0, 'Yes':1})
+df['treatment'] = df['treatment'].map({'No':0, 'Yes':1})
+
 df['Days_Indoors'] = df['Days_Indoors'].map({'Go out Every day' : 0, '1-14 days':1, '15-30 days':2, '31-60 days' : 3, 'More than 2 months': 4})
 df['Growing_Stress'] = df['Growing_Stress'].map({'No':0, 'Yes':1})
 df['Changes_Habits'] = df['Changes_Habits'].map({'No':0, 'Yes':1})
@@ -294,6 +296,8 @@ df['Work_Interest'] = df['Work_Interest'].map({'No':0, 'Yes':1})
 df['Social_Weakness'] = df['Social_Weakness'].map({'No':0, 'Yes':1})
 df['mental_health_interview'] = df['mental_health_interview'].map({'No':0, 'Yes':1})
 df['care_options'] = df['care_options'].map({'No':0, 'Yes':1, 'Not sure' : 2})
+
+df.to_csv('Data2MentalHealthConverted.csv', index=False)
 
 
 predictor_columns = ['Occupation','Country', 'self_employed', 'family_history','Days_Indoors','Growing_Stress', 'Changes_Habits', 'Mental_Health_History','Mood_Swings', 'Coping_Struggles','Work_Interest','Social_Weakness','mental_health_interview','care_options']
@@ -361,6 +365,8 @@ df['Married'] = df['Married'].map({'No':0, 'Yes':1})
 df['Depression'] = df['Depression'].map({'No':0, 'Yes':1})
 df['Panic'] = df['Panic'].map({'No':0, 'Yes':1})
 df['Treatment'] = df['Treatment'].map({'No':0, 'Yes':1})
+
+df.to_csv('Data3StudentMentalHealth.csv', index=False)
 
 
 predictor_columns = ['Gender', 'Age','Course','Study Year', 'GPA','Married','Depression','Anxiety','Panic','Treatment']
