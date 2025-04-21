@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score
 
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
-
+import joblib
 
 data_path = 'C:\\Users\\fweep\\OneDrive\\Documents\\Code\\cap5771sp25-project\\Data\\'
 
@@ -42,8 +42,10 @@ y2_test = df1.iloc[lower:,:]['Gender']
 df1 = df1.drop(['Depression'], axis=1)
 df2 = df2.drop(['Gender'], axis=1)
 
-df1 = df1.drop(['Age'], axis=1)
-df2 = df2.drop(['Age'], axis=1)
+# df1 = df1.drop(['Age'], axis=1)
+# df2 = df2.drop(['Age'], axis=1)
+df1 = df1.drop(['Study Year'], axis=1)
+df2 = df2.drop(['Study Year'], axis=1)
 
 
 
@@ -73,15 +75,15 @@ df1_test = df_encoded_1.iloc[lower:,:]
 
 
 
-categorical_columns = df1.select_dtypes(include=['object']).columns.tolist()
+categorical_columns = df2.select_dtypes(include=['object']).columns.tolist()
 
 encoder = OneHotEncoder(sparse_output=False)
 
-one_hot_encoded = encoder.fit_transform(df1[categorical_columns])
+one_hot_encoded = encoder.fit_transform(df2[categorical_columns])
 
 one_hot_df = pd.DataFrame(one_hot_encoded, columns=encoder.get_feature_names_out(categorical_columns))
 
-df_encoded_2 = pd.concat([df1, one_hot_df], axis=1)
+df_encoded_2 = pd.concat([df2, one_hot_df], axis=1)
 
 df_encoded_2 = df_encoded_2.drop(categorical_columns, axis=1)
 
@@ -96,6 +98,7 @@ svm = SVC(kernel="rbf", gamma=0.5, C=1.0)
 # Trained the model
 svm.fit(df1_train, y1_train)
 
+joblib.dump(svm,'SVM_Depression_Data_3.pkl')
 # exit()
 
 y_pred = svm.predict(df1_test)
@@ -196,6 +199,8 @@ svm = SVC(kernel="rbf", gamma=0.5, C=1.0)
 # Trained the model
 svm.fit(df2_train, y2_train)
 
+joblib.dump(svm,'SVM_Gender_Data_3.pkl')
+
 # print(svm.predict(df2_test))
 
 y_pred = svm.predict(df2_test)
@@ -283,6 +288,9 @@ print("==============")
 
 clf = DecisionTreeClassifier(random_state=1)
 clf.fit(df1_train, y1_train)
+
+
+joblib.dump(clf,'DT_Depression_Data_3.pkl')
 
 y_pred = clf.predict(df1_test)
 
@@ -376,6 +384,9 @@ print("==============")
 clf = DecisionTreeClassifier(random_state=1)
 clf.fit(df2_train, y2_train)
 
+joblib.dump(clf,'DT_Gender_Data_3.pkl')
+
+
 y_pred = clf.predict(df2_test)
 
 
@@ -464,6 +475,9 @@ rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
 # Fit the classifier to the training data
 rf_classifier.fit(df1_train, y1_train)
 
+joblib.dump(rf_classifier,'RF_Depression_Data_3.pkl')
+
+
 # # Make predictions
 y_pred = rf_classifier.predict(df1_test)
 
@@ -540,6 +554,9 @@ rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
 
 # Fit the classifier to the training data
 rf_classifier.fit(df2_train, y2_train)
+
+joblib.dump(rf_classifier,'RF_Gender_Data_3.pkl')
+
 
 # # Make predictions
 y_pred = rf_classifier.predict(df2_test)

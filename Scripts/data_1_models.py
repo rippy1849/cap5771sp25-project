@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score
 from sklearn.linear_model import LinearRegression 
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error,mean_squared_error
-
+import joblib
 
 data_path = 'C:\\Users\\fweep\\OneDrive\\Documents\\Code\\cap5771sp25-project\\Data\\'
 
@@ -70,6 +70,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y1_train)
 
+joblib.dump(regr,'LRM1SP.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -87,6 +89,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y2_train)
 
+joblib.dump(regr,'LRM1DP.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -102,6 +106,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y3_train)
+
+joblib.dump(regr,'LRM1AP.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -119,6 +125,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y4_train)
 
+joblib.dump(regr,'LRM1BP.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -134,6 +142,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y5_train)
+
+joblib.dump(regr,'LRM1EP.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -196,6 +206,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y1_train)
 
+joblib.dump(regr,'LRM1SD.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -213,6 +225,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y2_train)
 
+joblib.dump(regr,'LRM1DD.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -228,6 +242,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y3_train)
+
+joblib.dump(regr,'LRM1AD.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -245,6 +261,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y4_train)
 
+joblib.dump(regr,'LRM1BD.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -260,6 +278,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y5_train)
+
+joblib.dump(regr,'LRM1ED.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -328,6 +348,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y1_train)
 
+joblib.dump(regr,'LRM1ASD.pkl')
+
 y_pred = regr.predict(x_test)
 
 # exit()
@@ -350,6 +372,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y2_train)
 
+joblib.dump(regr,'LRM1ADD.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -365,6 +389,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y3_train)
+
+joblib.dump(regr,'LRM1AAD.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -382,6 +408,9 @@ regr = LinearRegression()
   
 regr.fit(x_train, y4_train)
 
+
+joblib.dump(regr,'LRM1ABD.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -397,6 +426,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y5_train)
+
+joblib.dump(regr,'LRM1AED.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -444,6 +475,7 @@ y5_test = df3.iloc[lower:,:]['Eating Avg Percent']
 regr = LinearRegression() 
   
 regr.fit(x_train, y1_train)
+joblib.dump(regr,'LRM1ASP.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -467,6 +499,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y2_train)
 
+joblib.dump(regr,'LRM1ADP.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -482,6 +516,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y3_train)
+
+joblib.dump(regr,'LRM1AAP.pkl')
 
 y_pred = regr.predict(x_test)
 
@@ -499,6 +535,8 @@ regr = LinearRegression()
   
 regr.fit(x_train, y4_train)
 
+joblib.dump(regr,'LRM1ABP.pkl')
+
 y_pred = regr.predict(x_test)
 
 # print(y_pred)
@@ -514,6 +552,8 @@ print("========================")
 regr = LinearRegression() 
   
 regr.fit(x_train, y5_train)
+
+joblib.dump(regr,'LRM1AEP.pkl')
 
 y_pred = regr.predict(x_test)
 

@@ -8,7 +8,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
-
+import joblib
 
 data_path = 'C:\\Users\\fweep\\OneDrive\\Documents\\Code\\cap5771sp25-project\\Data\\'
 
@@ -65,6 +65,10 @@ y2_test = pd.concat([y2_test_female, y2_test_male], axis=0)
 df1 = df1.drop(['Gender'], axis=1)
 df2 = df2.drop(['treatment'], axis=1)
 
+df1 = df1.drop('self_employed', axis=1)
+df2 = df2.drop('self_employed', axis=1)
+
+# print(df1)
 
 categorical_columns = df1.select_dtypes(include=['object']).columns.tolist()
 
@@ -78,6 +82,7 @@ df_encoded_1 = pd.concat([df1, one_hot_df], axis=1)
 
 df_encoded_1 = df_encoded_1.drop(categorical_columns, axis=1)
 
+# print(df_encoded_1)
 
 # df1_train = df_encoded_1.iloc[:lower,:]
 # df1_test = df_encoded_1.iloc[lower:upper,:]
@@ -94,22 +99,23 @@ df1_test_male = df_encoded_1.iloc[100000+lower:100000 + upper,:]
 
 df1_test = pd.concat([df1_test_female, df1_test_male], axis=0)
 
+# print(df1_train['Gender_Male'])
+
+# exit()
 
 
-
-
-
-categorical_columns = df1.select_dtypes(include=['object']).columns.tolist()
+categorical_columns = df2.select_dtypes(include=['object']).columns.tolist()
 
 encoder = OneHotEncoder(sparse_output=False)
 
-one_hot_encoded = encoder.fit_transform(df1[categorical_columns])
+one_hot_encoded = encoder.fit_transform(df2[categorical_columns])
 
 one_hot_df = pd.DataFrame(one_hot_encoded, columns=encoder.get_feature_names_out(categorical_columns))
 
-df_encoded_2 = pd.concat([df1, one_hot_df], axis=1)
+df_encoded_2 = pd.concat([df2, one_hot_df], axis=1)
 
 df_encoded_2 = df_encoded_2.drop(categorical_columns, axis=1)
+
 
 
 df2_train = df_encoded_2.iloc[:lower,:]
@@ -128,13 +134,17 @@ df2_test_male = df_encoded_2.iloc[100000+lower:100000 + upper,:]
 
 df2_test = pd.concat([df2_test_female, df2_test_male], axis=0)
 
-
+# exit()
 #SVM MODEL 1
 
 svm = SVC(kernel="rbf", gamma=0.5, C=1.0)
 # Trained the model
+
+# print(df1_train)
 svm.fit(df1_train, y1_train)
 
+
+joblib.dump(svm,'SVM_Gender_Data_2.pkl')
 
 y_pred = svm.predict(df1_test)
 
@@ -191,6 +201,7 @@ for tp,fp in zip(y1_ROC_tpr_1,y1_ROC_fpr_1):
     y1_ROC_fpr_1_xaxis.append(1-(fp/falsePositive))
 
 
+
 # print(y1_ROC_fpr_1_xaxis)
 # print(y1_ROC_tpr_1_yaxis)
 
@@ -231,6 +242,8 @@ svm = SVC(kernel="rbf", gamma=0.5, C=1.0)
 # Trained the model
 svm.fit(df2_train, y2_train)
 
+
+joblib.dump(svm,'SVM_Treatment_Data_2.pkl')
 # print(svm.predict(df2_test))
 
 y_pred = svm.predict(df2_test)
@@ -309,6 +322,8 @@ print("==============")
 
 clf = DecisionTreeClassifier(random_state=1)
 clf.fit(df1_train, y1_train)
+
+joblib.dump(clf,'DT_Gender_Data_2.pkl')
 
 y_pred = clf.predict(df1_test)
 
@@ -399,7 +414,7 @@ clf.fit(df2_train, y2_train)
 
 y_pred = clf.predict(df2_test)
 
-
+joblib.dump(clf,'DT_Treatment_Data_2.pkl')
 
 y2_test = pd.DataFrame(y2_test)
 
@@ -485,6 +500,11 @@ rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
 # Fit the classifier to the training data
 rf_classifier.fit(df1_train, y1_train)
 
+# print(df1_train['Gender_Male'])
+
+
+joblib.dump(rf_classifier,'RF_Gender_Data_2.pkl')
+
 # # Make predictions
 y_pred = rf_classifier.predict(df1_test)
 
@@ -560,6 +580,8 @@ rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
 # Fit the classifier to the training data
 rf_classifier.fit(df2_train, y2_train)
 
+
+joblib.dump(rf_classifier,'RF_Treatment_Data_2.pkl')
 # # Make predictions
 y_pred = rf_classifier.predict(df2_test)
 
