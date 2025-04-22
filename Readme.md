@@ -16,3 +16,4 @@ Chi Squared metrics were created with chi_squared.py
 Average Data for linear regression models was generated with averager.py
 The entire streamlit dashboard tool is contained within dashboard.py.
 
+The video of the demo is in the 'Video' folder, called Mental Health.mkv
